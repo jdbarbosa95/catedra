@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditObservadorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditObservadorLabel_idObservador}" for="idObservador" />
+                    <h:inputText id="idObservador" value="#{observadorController.selected.idObservador}" title="#{bundle.EditObservadorTitle_idObservador}" required="true" requiredMessage="#{bundle.EditObservadorRequiredMessage_idObservador}"/>
+                    <h:outputLabel value="#{bundle.EditObservadorLabel_fechaRegistro}" for="fechaRegistro" />
+                    <h:inputText id="fechaRegistro" value="#{observadorController.selected.fechaRegistro}" title="#{bundle.EditObservadorTitle_fechaRegistro}" required="true" requiredMessage="#{bundle.EditObservadorRequiredMessage_fechaRegistro}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditObservadorLabel_estudianteidEstudiante}" for="estudianteidEstudiante" />
+                    <h:selectOneMenu id="estudianteidEstudiante" value="#{observadorController.selected.estudianteidEstudiante}" title="#{bundle.EditObservadorTitle_estudianteidEstudiante}" required="true" requiredMessage="#{bundle.EditObservadorRequiredMessage_estudianteidEstudiante}">
+                        <f:selectItems value="#{estudianteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{observadorController.update}" value="#{bundle.EditObservadorSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditObservadorViewLink}"/>
+                <br />
+                <h:commandLink action="#{observadorController.prepareList}" value="#{bundle.EditObservadorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditObservadorIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

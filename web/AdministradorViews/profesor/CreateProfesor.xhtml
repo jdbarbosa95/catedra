@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template.xhtml">
+        <ui:define name="title">
+        #{loginUsuarioController.usuario.nombreUsuario}- Crear profesor
+
+    </ui:define>
+
+    <ui:define name="banner">
+        <img src="../../resources/images/logo.png" width="303" height="82" alt="logo"/>
+
+        <div style="float: right" align="right">
+            #{loginUsuarioController.usuario.nombreUsuario}<br/> 
+            #{loginUsuarioController.usuario.rolidRol.nombreRol}<br/>  
+
+            <h:link outcome="/faces/index" value="Cerrar Sesion" />
+
+
+        </div>
+
+
+
+    </ui:define>
+    <ui:define name="nav">
+        <h:form>
+            <p:menubar>
+
+                <p:menuitem value="Perfil" url="/faces/AdministradorViews/PerfilProfesor.xhtml" icon="ui-icon-person"/>
+
+                <p:submenu label="Estudiantes" icon="ui-icon-document">
+
+                    <p:menuitem outcome="/faces/AdministradorViews/estudiante/ListEstudiante" value="Consultar estudiante"/>
+                    <p:menuitem outcome="/faces/AdministradorViews/estudiante/CreateEstudiante" value="crear estudiante"/>
+
+
+                </p:submenu>
+                <p:submenu label="Profesores" icon="ui-icon-document">
+
+                    <p:menuitem outcome="ListProfesor" value="Consultar profesor"/>
+                    <p:menuitem outcome="CreateProfesor" value="crear profesor"/>
+
+
+                </p:submenu>
+                 <p:submenu label="Acudientes" icon="ui-icon-document">
+
+                    <p:menuitem outcome="/faces/AdministradorViews/acudiente/List" value="Consultar Acudiente"/>
+                    <p:menuitem outcome="/faces/AdministradorViews/acudiente/CreateAcudiente" value="crear Acudiente"/>
+
+
+                </p:submenu>
+                
+            </p:menubar>            
+        </h:form>
+    </ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="wrapper">
+            <article class="grid_10">
+                <div class="maxheight Espacio1">
+                    <h3>crear profesor</h3>
+                </div>
+            </article>
+        </div>
+
+
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+ 
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="#{bundle.CreateUsuarioLabel_documento}" for="documento" />
+                <h:inputText id="documento" value="#{profesorController.usuDocumento}" title="#{bundle.CreateUsuarioTitle_documento}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_documento}"/>
+                   
+                
+                <h:outputLabel value="#{bundle.CreateUsuarioLabel_nombres}" for="nombres" />
+                <h:inputText id="nombres" value="#{profesorController.usuNombres}" title="#{bundle.CreateUsuarioTitle_nombres}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_nombres}"/>
+                
+                <h:outputLabel value="#{bundle.CreateUsuarioLabel_apellidos}" for="apellidos" />
+                <h:inputText id="apellidos" value="#{profesorController.usuApellidos}" title="#{bundle.CreateUsuarioTitle_apellidos}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_apellidos}"/>
+                
+                <h:outputLabel value="#{bundle.CreateUsuarioLabel_telefono}" for="telefono" />
+                <h:inputText id="telefono" value="#{profesorController.usuTelefono}" title="#{bundle.CreateUsuarioTitle_telefono}" />
+                
+                <h:outputLabel value="#{bundle.CreateUsuarioLabel_correo}" for="correo" />
+                <h:inputText id="correo" value="#{profesorController.usuCorreo}" title="#{bundle.CreateUsuarioTitle_correo}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_correo}"/>
+                
+                <h:outputLabel value="#{bundle.CreateUsuarioLabel_nombreUsuario}" for="nombreUsuario" />
+                <h:inputText id="nombreUsuario" value="#{profesorController.usuNombreUsuario}" title="#{bundle.CreateUsuarioTitle_nombreUsuario}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_nombreUsuario}"/>
+                
+               
+              
+            </h:panelGrid>
+            <p:commandButton actionListener="#{profesorController.crearprofesor()}" value="crear"/>
+       </h:form>
+       
+    </ui:define>
+
+</ui:composition>
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewNotaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewNotaLabel_idNota}"/>
+                    <h:outputText value="#{notaController.selected.idNota}" title="#{bundle.ViewNotaTitle_idNota}"/>
+                    <h:outputText value="#{bundle.ViewNotaLabel_valoracion}"/>
+                    <h:outputText value="#{notaController.selected.valoracion}" title="#{bundle.ViewNotaTitle_valoracion}"/>
+                    <h:outputText value="#{bundle.ViewNotaLabel_fechaRegistro}"/>
+                    <h:outputText value="#{notaController.selected.fechaRegistro}" title="#{bundle.ViewNotaTitle_fechaRegistro}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewNotaLabel_estudianteidEstudiante}"/>
+                    <h:outputText value="#{notaController.selected.estudianteidEstudiante}" title="#{bundle.ViewNotaTitle_estudianteidEstudiante}"/>
+                    <h:outputText value="#{bundle.ViewNotaLabel_periodoidPeriodo}"/>
+                    <h:outputText value="#{notaController.selected.periodoidPeriodo}" title="#{bundle.ViewNotaTitle_periodoidPeriodo}"/>
+                    <h:outputText value="#{bundle.ViewNotaLabel_asignaturaidAsignatura}"/>
+                    <h:outputText value="#{notaController.selected.asignaturaidAsignatura}" title="#{bundle.ViewNotaTitle_asignaturaidAsignatura}"/>
+                    <h:outputText value="#{bundle.ViewNotaLabel_logroidLogro}"/>
+                    <h:outputText value="#{notaController.selected.logroidLogro}" title="#{bundle.ViewNotaTitle_logroidLogro}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{notaController.destroyAndView}" value="#{bundle.ViewNotaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewNotaEditLink}"/>
+                <br />
+                <h:commandLink action="#{notaController.prepareCreate}" value="#{bundle.ViewNotaCreateLink}" />
+                <br />
+                <h:commandLink action="#{notaController.prepareList}" value="#{bundle.ViewNotaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewNotaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

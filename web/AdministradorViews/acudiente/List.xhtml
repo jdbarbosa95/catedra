@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template.xhtml">
+    <ui:define name="title">
+        #{loginUsuarioController.usuario.nombreUsuario}- Consultar Acudientes
+
+    </ui:define>
+
+    <ui:define name="banner">
+        <img src="../../resources/images/logo.png" width="303" height="82" alt="logo"/>
+
+        <div style="float: right" align="right">
+            #{loginUsuarioController.usuario.nombreUsuario}<br/> 
+            #{loginUsuarioController.usuario.rolidRol.nombreRol}<br/>  
+
+            <h:link outcome="/faces/index" value="Cerrar Sesion" />
+
+
+        </div>
+
+
+
+    </ui:define>
+    <ui:define name="nav">
+        <h:form>
+            <p:menubar>
+
+                <p:menuitem value="Perfil" outcome="/faces/AdministradorViews/PerfilAdministrador" icon="ui-icon-person"/>
+
+                <p:submenu label="Estudiantes" icon="ui-icon-document">
+
+                    <p:menuitem outcome="/faces/AdministradorViews/estudiante/ListEstudiante" value="Consultar estudiante"/>
+                    <p:menuitem outcome="/faces/AdministradorViews/estudiante/CreateEstudiante" value="crear estudiante"/>
+
+
+                </p:submenu>
+                <p:submenu label="Profesores" icon="ui-icon-document">
+
+                    <p:menuitem outcome="/faces/AdministradorViews/profesor/ListProfesor" value="Consultar profesor"/>
+                    <p:menuitem outcome="/faces/AdministradorViews/profesor/CreateProfesor" value="crear profesor"/>
+
+
+                </p:submenu>
+                <p:submenu label="Acudientes" icon="ui-icon-document">
+
+                    <p:menuitem outcome="List" value="Consultar Acudiente"/>
+                    <p:menuitem outcome="CreateAcudiente" value="crear Acudiente"/>
+
+
+                </p:submenu>
+
+            </p:menubar>            
+        </h:form>
+    </ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="wrapper">
+            <article class="grid_10">
+                <div class="maxheight Espacio1">
+                    <h3>consultar Acudientes</h3>
+                </div>
+            </article>
+        </div>
+
+
+        
+        <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAcudienteEmpty}" rendered="#{acudienteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{acudienteController.items.rowCount > 0}">
+                    <h:outputText value="#{acudienteController.pagination.pageFirstItem + 1}..#{acudienteController.pagination.pageLastItem + 1}/#{acudienteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{acudienteController.previous}" value="#{bundle.Previous} #{acudienteController.pagination.pageSize}" rendered="#{acudienteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{acudienteController.next}" value="#{bundle.Next} #{acudienteController.pagination.pageSize}" rendered="#{acudienteController.pagination.hasNextPage}"/>&nbsp;
+                    <p:dataTable value="#{acudienteController.obtenerUsuario}" var="item"  style="border:solid 1px">
+                       <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Documento"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioidUsuario.documento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nombres"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioidUsuario.nombres}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Apellidos"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioidUsuario.apellidos}"/>
+                        </p:column>
+                        
+                        <p:column style="width: 250px">
+                            <f:facet name="header">
+                                <h:outputText value="Correo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioidUsuario.correo}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Telefono"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioidUsuario.telefono}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nombre de usuario"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioidUsuario.nombreUsuario}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                
+            </h:form>
+
+    </ui:define>
+
+</ui:composition>
+
+
+
+

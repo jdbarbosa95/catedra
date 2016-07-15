@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewObservadorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewObservadorLabel_idObservador}"/>
+                    <h:outputText value="#{observadorController.selected.idObservador}" title="#{bundle.ViewObservadorTitle_idObservador}"/>
+                    <h:outputText value="#{bundle.ViewObservadorLabel_fechaRegistro}"/>
+                    <h:outputText value="#{observadorController.selected.fechaRegistro}" title="#{bundle.ViewObservadorTitle_fechaRegistro}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewObservadorLabel_estudianteidEstudiante}"/>
+                    <h:outputText value="#{observadorController.selected.estudianteidEstudiante}" title="#{bundle.ViewObservadorTitle_estudianteidEstudiante}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{observadorController.destroyAndView}" value="#{bundle.ViewObservadorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewObservadorEditLink}"/>
+                <br />
+                <h:commandLink action="#{observadorController.prepareCreate}" value="#{bundle.ViewObservadorCreateLink}" />
+                <br />
+                <h:commandLink action="#{observadorController.prepareList}" value="#{bundle.ViewObservadorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewObservadorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

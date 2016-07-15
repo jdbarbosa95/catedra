@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+     
+    <h:head>
+        <title>Cars</title>
+                <style type="text/css">
+            .ui-widget {
+                font-size: 90%;
+            }
+        </style>
+    </h:head>
+     
+    <h:body>
+        <h:form>
+            <p:panelGrid columns="2">
+                
+                <p:outputLabel value="Asisnatura"/>
+                <p:selectOneMenu value=" #{asignaturaController.asignaturaSelecDocente}">
+                    <f:selectItems value="#{asignaturaController.itemsAvailableSelectOne}"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+
+        </h:form>
+    </h:body>
+     
+</html>
+

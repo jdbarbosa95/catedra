@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateNotaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateNotaLabel_idNota}" for="idNota" />
+                    <h:inputText id="idNota" value="#{notaController.selected.idNota}" title="#{bundle.CreateNotaTitle_idNota}" required="true" requiredMessage="#{bundle.CreateNotaRequiredMessage_idNota}"/>
+                    <h:outputLabel value="#{bundle.CreateNotaLabel_valoracion}" for="valoracion" />
+                    <h:inputText id="valoracion" value="#{notaController.selected.valoracion}" title="#{bundle.CreateNotaTitle_valoracion}" required="true" requiredMessage="#{bundle.CreateNotaRequiredMessage_valoracion}"/>
+                    <h:outputLabel value="#{bundle.CreateNotaLabel_fechaRegistro}" for="fechaRegistro" />
+                    <h:inputText id="fechaRegistro" value="#{notaController.selected.fechaRegistro}" title="#{bundle.CreateNotaTitle_fechaRegistro}" required="true" requiredMessage="#{bundle.CreateNotaRequiredMessage_fechaRegistro}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateNotaLabel_estudianteidEstudiante}" for="estudianteidEstudiante" />
+                    <h:selectOneMenu id="estudianteidEstudiante" value="#{notaController.selected.estudianteidEstudiante}" title="#{bundle.CreateNotaTitle_estudianteidEstudiante}" required="true" requiredMessage="#{bundle.CreateNotaRequiredMessage_estudianteidEstudiante}">
+                        <f:selectItems value="#{estudianteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNotaLabel_periodoidPeriodo}" for="periodoidPeriodo" />
+                    <h:selectOneMenu id="periodoidPeriodo" value="#{notaController.selected.periodoidPeriodo}" title="#{bundle.CreateNotaTitle_periodoidPeriodo}" required="true" requiredMessage="#{bundle.CreateNotaRequiredMessage_periodoidPeriodo}">
+                        <f:selectItems value="#{periodoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNotaLabel_asignaturaidAsignatura}" for="asignaturaidAsignatura" />
+                    <h:selectOneMenu id="asignaturaidAsignatura" value="#{notaController.selected.asignaturaidAsignatura}" title="#{bundle.CreateNotaTitle_asignaturaidAsignatura}" required="true" requiredMessage="#{bundle.CreateNotaRequiredMessage_asignaturaidAsignatura}">
+                        <f:selectItems value="#{asignaturaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNotaLabel_logroidLogro}" for="logroidLogro" />
+                    <h:selectOneMenu id="logroidLogro" value="#{notaController.selected.logroidLogro}" title="#{bundle.CreateNotaTitle_logroidLogro}" required="true" requiredMessage="#{bundle.CreateNotaRequiredMessage_logroidLogro}">
+                        <f:selectItems value="#{logroController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{notaController.create}" value="#{bundle.CreateNotaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{notaController.prepareList}" value="#{bundle.CreateNotaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateNotaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

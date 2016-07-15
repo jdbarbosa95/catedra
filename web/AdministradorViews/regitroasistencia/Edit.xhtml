@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRegitroasistenciaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRegitroasistenciaLabel_idRegitroAsistencia}" for="idRegitroAsistencia" />
+                    <h:inputText id="idRegitroAsistencia" value="#{regitroasistenciaController.selected.idRegitroAsistencia}" title="#{bundle.EditRegitroasistenciaTitle_idRegitroAsistencia}" required="true" requiredMessage="#{bundle.EditRegitroasistenciaRequiredMessage_idRegitroAsistencia}"/>
+                    <h:outputLabel value="#{bundle.EditRegitroasistenciaLabel_asistio}" for="asistio" />
+                    <h:inputText id="asistio" value="#{regitroasistenciaController.selected.asistio}" title="#{bundle.EditRegitroasistenciaTitle_asistio}" required="true" requiredMessage="#{bundle.EditRegitroasistenciaRequiredMessage_asistio}"/>
+                    <h:outputLabel value="#{bundle.EditRegitroasistenciaLabel_claseidClase}" for="claseidClase" />
+                    <h:inputText id="claseidClase" value="#{regitroasistenciaController.selected.claseidClase}" title="#{bundle.EditRegitroasistenciaTitle_claseidClase}" required="true" requiredMessage="#{bundle.EditRegitroasistenciaRequiredMessage_claseidClase}"/>
+                    <h:outputLabel value="#{bundle.EditRegitroasistenciaLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{regitroasistenciaController.selected.fecha}" title="#{bundle.EditRegitroasistenciaTitle_fecha}" required="true" requiredMessage="#{bundle.EditRegitroasistenciaRequiredMessage_fecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditRegitroasistenciaLabel_estudianteidEstudiante}" for="estudianteidEstudiante" />
+                    <h:selectOneMenu id="estudianteidEstudiante" value="#{regitroasistenciaController.selected.estudianteidEstudiante}" title="#{bundle.EditRegitroasistenciaTitle_estudianteidEstudiante}" required="true" requiredMessage="#{bundle.EditRegitroasistenciaRequiredMessage_estudianteidEstudiante}">
+                        <f:selectItems value="#{estudianteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRegitroasistenciaLabel_justificacionidJustificacion}" for="justificacionidJustificacion" />
+                    <h:selectOneMenu id="justificacionidJustificacion" value="#{regitroasistenciaController.selected.justificacionidJustificacion}" title="#{bundle.EditRegitroasistenciaTitle_justificacionidJustificacion}" required="true" requiredMessage="#{bundle.EditRegitroasistenciaRequiredMessage_justificacionidJustificacion}">
+                        <f:selectItems value="#{justificacionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{regitroasistenciaController.update}" value="#{bundle.EditRegitroasistenciaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRegitroasistenciaViewLink}"/>
+                <br />
+                <h:commandLink action="#{regitroasistenciaController.prepareList}" value="#{bundle.EditRegitroasistenciaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRegitroasistenciaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

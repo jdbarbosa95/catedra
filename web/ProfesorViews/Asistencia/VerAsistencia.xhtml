@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template.xhtml">
+    <!-- nótese el uso del atributo 'template' -->
+
+    <ui:define name="title">
+        #{loginUsuarioController.usuario.nombreUsuario}- ingresar notas
+
+    </ui:define>
+
+    <ui:define name="banner">
+        <img src="../../resources/images/logo.png" width="303" height="82" alt="logo"/>
+        <div style="float: right" align="right">
+            #{loginUsuarioController.usuario.nombreUsuario}<br/> 
+            #{loginUsuarioController.usuario.rolidRol.nombreRol}<br/>  
+
+            <h:link  outcome="/faces/index" value="Cerrar Sesion" />
+
+
+        </div>
+
+
+
+    </ui:define>
+    <ui:define name="nav">
+        <h:form>
+            <p:menubar>
+
+                <p:menuitem value="Perfil" url="/faces/ProfesorViews/PerfilProfesor.xhtml" icon="ui-icon-person"/>
+
+                <p:submenu label="Notas" icon="ui-icon-document">
+
+                   <p:menuitem outcome="/faces/ProfesorViews/Notas/VerNotas" value="Ver Notas"/>
+
+                    <p:menuitem outcome="/faces/ProfesorViews/Notas/IngresarNotas" value="Ingresar Notas"/>
+
+
+                </p:submenu>
+               <p:submenu label="Observador" icon="ui-icon-document">
+
+                    <p:menuitem outcome="/faces/ProfesorViews/Observador/CrearObservacion" value="Crear Observacion"/>
+
+                </p:submenu>
+                <p:submenu label="Asistencia" icon="ui-icon-document">
+
+                    <p:menuitem value="consultar asistencia" outcome="VerAsistencia"/>
+                    <p:menuitem outcome="RegistrarAsistencia" value="Registrar asistencia"/>
+
+                </p:submenu>
+            </p:menubar>            
+        </h:form>
+    </ui:define>
+
+    <ui:define name="contenido">
+        
+                <div class="wrapper">
+                    <article class="grid_10">
+                        <div class="maxheight Espacio1">
+                            <h3>registro asistencia</h3>
+                        </div>
+                    </article>
+                </div>
+            
+
+        <h:form>
+            
+
+
+
+             
+          
+            <h:outputLabel value="Curso: " for="cursos" />            
+            <h:selectOneMenu id="cursos" value="#{estudianteController.curso}" >
+                <f:selectItems value="#{cursoController.itemsAvailableSelectOneMisCursos}"  />
+                <f:ajax id="idCur" event="change" render="result" listener="#{estudianteController.mostrarAsistencia()}"/>
+                
+            </h:selectOneMenu>         
+            
+                   
+            <h:dataTable  var="item" id="result" value="#{estudianteController.listasistencia }" border="1" >
+                <h:column >
+                    <f:facet name="header">Nombre</f:facet> 
+                    <h:outputLabel value="#{item.estudianteidEstudiante.usuarioidUsuario.nombres}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header">Apellidos</f:facet> 
+                    <h:outputLabel value="#{item.estudianteidEstudiante.usuarioidUsuario.apellidos}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header">Asistio</f:facet> 
+                    <h:outputLabel value="#{item.asistio}"/>
+                    
+                </h:column>
+                <h:column >
+                    <f:facet name="header">Justificacion</f:facet> 
+                    <h:outputLabel value="#{item.justificacionidJustificacion.descargo}"/>
+                    
+                </h:column>
+               
+            </h:dataTable>
+            
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+
+
+
+

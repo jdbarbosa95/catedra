@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateObservacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateObservacionLabel_idObservacion}" for="idObservacion" />
+                    <h:inputText id="idObservacion" value="#{observacionController.selected.idObservacion}" title="#{bundle.CreateObservacionTitle_idObservacion}" required="true" requiredMessage="#{bundle.CreateObservacionRequiredMessage_idObservacion}"/>
+                    <h:outputLabel value="#{bundle.CreateObservacionLabel_observacion}" for="observacion" />
+                    <h:inputTextarea rows="4" cols="30" id="observacion" value="#{observacionController.selected.observacion}" title="#{bundle.CreateObservacionTitle_observacion}" required="true" requiredMessage="#{bundle.CreateObservacionRequiredMessage_observacion}"/>
+                    <h:outputLabel value="#{bundle.CreateObservacionLabel_descargos}" for="descargos" />
+                    <h:inputTextarea rows="4" cols="30" id="descargos" value="#{observacionController.selected.descargos}" title="#{bundle.CreateObservacionTitle_descargos}" />
+                    <h:outputLabel value="#{bundle.CreateObservacionLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{observacionController.selected.fecha}" title="#{bundle.CreateObservacionTitle_fecha}" required="true" requiredMessage="#{bundle.CreateObservacionRequiredMessage_fecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateObservacionLabel_observadoridObservador}" for="observadoridObservador" />
+                    <h:selectOneMenu id="observadoridObservador" value="#{observacionController.selected.observadoridObservador}" title="#{bundle.CreateObservacionTitle_observadoridObservador}" required="true" requiredMessage="#{bundle.CreateObservacionRequiredMessage_observadoridObservador}">
+                        <f:selectItems value="#{observadorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateObservacionLabel_profesor}" for="profesor" />
+                    <h:selectOneMenu id="profesor" value="#{observacionController.selected.profesor}" title="#{bundle.CreateObservacionTitle_profesor}" required="true" requiredMessage="#{bundle.CreateObservacionRequiredMessage_profesor}">
+                        <f:selectItems value="#{profesorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{observacionController.create}" value="#{bundle.CreateObservacionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{observacionController.prepareList}" value="#{bundle.CreateObservacionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateObservacionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

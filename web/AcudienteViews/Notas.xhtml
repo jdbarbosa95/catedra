@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template.xhtml">
+    <!-- nótese el uso del atributo 'template' -->
+
+    <ui:define name="title">
+        <title>Acudiente</title>
+    </ui:define>
+
+           
+         <div id="header">
+                <ul class="nav">
+                    <li>
+                        <h:commandLink action="/index">Cerrar sesion</h:commandLink>
+                    </li>
+                </ul>
+            </div>
+   
+    <ui:define name="nav">
+        <h:form>
+            <p:menubar>
+
+                <p:menuitem value="Perfil" outcome="PerfilAcudiente" icon="ui-icon-person"/>
+
+
+                <p:menuitem outcome="Notas" value="Notas" />
+                
+
+            </p:menubar>            
+        </h:form>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:form>
+            <p:selectManyMenu value="#{usuarioController.usuarioSelec}">
+                <f:selectItems value="#{usuarioController.itemsAvailableSelectOnelistaEstuAcudiente}"/>
+                  <f:ajax  event="change" listener="#{asignaturaController.obtenerAsisgnaturasEstuAcudiente()}" render="result"/>
+            </p:selectManyMenu>
+            
+            <h:selectOneMenu id="result" value="#{asignaturaController.asignaturaSelecDocente}" >
+                <f:selectItems value="#{asignaturaController.lista}"/>
+                <f:ajax  event="change" listener="#{periodoController.periodoAsigEstAcud()}" render="resultPnea"/>
+            </h:selectOneMenu>
+
+        </h:form>
+
+
+
+
+    </ui:define>
+
+</ui:composition>
+
+
+
+
+
+

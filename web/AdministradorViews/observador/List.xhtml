@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListObservadorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListObservadorEmpty}" rendered="#{observadorController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{observadorController.items.rowCount > 0}">
+                    <h:outputText value="#{observadorController.pagination.pageFirstItem + 1}..#{observadorController.pagination.pageLastItem + 1}/#{observadorController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{observadorController.previous}" value="#{bundle.Previous} #{observadorController.pagination.pageSize}" rendered="#{observadorController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{observadorController.next}" value="#{bundle.Next} #{observadorController.pagination.pageSize}" rendered="#{observadorController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{observadorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservadorTitle_idObservador}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idObservador}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservadorTitle_fechaRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaRegistro}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservadorTitle_estudianteidEstudiante}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estudianteidEstudiante}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{observadorController.prepareView}" value="#{bundle.ListObservadorViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{observadorController.prepareEdit}" value="#{bundle.ListObservadorEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{observadorController.destroy}" value="#{bundle.ListObservadorDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{observadorController.prepareCreate}" value="#{bundle.ListObservadorCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListObservadorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

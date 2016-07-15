@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template.xhtml">
+    <!-- nótese el uso del atributo 'template' -->
+
+    <ui:define name="title">
+        #{loginUsuarioController.usuario.nombreUsuario}- Ver Observador
+    </ui:define>
+    <ui:define name="banner">
+        <img src="../resources/images/logo.png" width="303" height="82" alt="logo"/>    
+        <div style="float: right" align="right">
+            #{loginUsuarioController.usuario.nombreUsuario}<br/> 
+            #{loginUsuarioController.usuario.rolidRol.nombreRol}<br/>  
+
+            <h:link outcome="/faces/index" value="Cerrar Sesion" />
+
+
+        </div>
+
+
+    </ui:define>
+
+
+
+    <ui:define name="nav">
+        <h:form>
+            <p:menubar>
+
+                <p:menuitem value="Perfil" outcome="PerfilEstudiante" icon="ui-icon-person"/>
+
+
+                <p:menuitem outcome="VerNotas" value="Notas" />
+                <p:menuitem outcome="VerObservador" value="Observador" />
+                <p:menuitem outcome="VerAsistencia" value="Asistencia" />
+
+
+            </p:menubar>            
+        </h:form>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:form>
+
+            <h:dataTable var="item" value="#{observadorController.obtenerObservador}">
+
+                <h:column >
+                    <f:facet name="header"> Observador </f:facet>
+                    <p:outputLabel value="#{item.observadoridObservador.idObservador}"/>
+
+                </h:column>
+                <h:column >
+                    <f:facet name="header"> Observacion </f:facet>
+                    <h:outputLabel value="#{item.observacion}"/>
+
+                </h:column>
+                <h:column >
+                    <f:facet name="header"> Descargos </f:facet>
+                    <h:outputLabel value="#{item.descargos}"/>
+
+                </h:column>
+            </h:dataTable>
+
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+
+
+

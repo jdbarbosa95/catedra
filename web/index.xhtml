@@ -1,0 +1,111 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template.xhtml">
+    <!-- nótese el uso del atributo 'template' -->
+
+    <ui:define name="title">
+        Catedra
+    </ui:define>
+
+    <ui:define name="nav">
+        <p:tabMenu activeIndex="#{param.i}">
+            <p:menuitem value="Inicio" outcome="/index" icon="ui-icon-star">
+                <f:param name="i" value="0" />
+            </p:menuitem>
+            <p:menuitem value="login" outcome="/login" icon="ui-icon-person">
+                <f:param name="i" value="1" />
+            </p:menuitem>
+            </p:tabMenu>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <div id="content">
+            <div class="ic"></div>
+            <div>
+                <div class="wrapper">
+                    <article class="grid_10">
+                        <div class="maxheight Espacio1">
+                            <h3>Catedra</h3>
+
+                        </div>
+                    </article>       
+                    <div id="wowslider-container1">
+                        <div class="ws_images">
+                            <ul>
+                                <li>
+                                    <img src="resources/data1/images/125424.jpg" alt="125424" title="125424" id="wows1_0"/>
+                                </li>
+                                <li>
+                                    <img src="resources/data1/images/aula2.0.jpg" alt="aula-2.0" title="aula-2.0" id="wows1_1"/>
+                                </li>
+                                <li><a href="http://wowslider.com">
+
+                                        <img src="resources/data1/images/compruebacomputadorafunciona1040kk081109.jpg" alt="slider wordpress" title="comprueba-computadora-funciona1040kk081109" id="wows1_2"/>  </a></li>
+
+                                <li>
+                                    <img src="resources/data1/images/web_jornada_unica_big_ce.jpg" alt="web_jornada_unica_big_ce" title="web_jornada_unica_big_ce" id="wows1_3"/>
+                                </li>
+                            </ul>                                               
+
+                        </div>
+
+                        <div class="ws_bullets">
+                            <div>
+                                <a href="#" title="125424"><samp>                                                        
+                                        <img src="resources/data1/tooltips/125424.jpg" alt="125424"/>1</samp></a>
+                                <a href="#" title="aula-2.0"><samp>
+                                        <img src="resources/data1/tooltips/aula2.0.jpg" alt="aula-2.0"/>2</samp></a>
+                                <a href="#" title="comprueba-computadora-funciona1040kk081109"><samp>
+                                        <img src="resources/data1/tooltips/compruebacomputadorafunciona1040kk081109.jpg" alt="comprueba-computadora-funciona1040kk081109"/>3</samp></a>
+                                <a href="#" title="web_jornada_unica_big_ce"><samp>
+                                        <img src="resources/data1/tooltips/web_jornada_unica_big_ce.jpg" alt="web_jornada_unica_big_ce"/>4 </samp></a>
+                            </div>                                                
+                        </div>
+                        <div class="ws_script" style="position: absolute; left: -99%"><a href="http://wowslider.com"></a>by WOWSlider.com v8.2 </div>
+                        <div class="ws_shadow"></div>
+                    </div>
+                    <h:outputScript library="js" name="wowslider.js" ></h:outputScript>
+                    <h:outputScript library="js" name="script.js" ></h:outputScript>
+
+                    <div id="contents">
+                        <div class="post">
+                            <h2>Nuestro Eslogan:</h2>
+
+                            <p>Ganando confianza e incentivando el aprender</p>
+
+                            <p>
+
+                            </p>
+                        </div>
+                        <div id="left">
+                            <h2>Concepto:</h2>
+
+                            <p>
+                                Somos un grupo que promovemos la interacción entre la comunidad educativa ofrecemos la posibilidad de mejorar las competencias académicas de los estudiantes y su integridad humana ofreciendo un excelente servicio que facilita la calidad del aprendizaje en los estudiantes y los que lo rodean, intentamos mantener las buenas relaciones considerando el respeto y tolerancia como procesos fundamentales para lograr aumentar la calidad en la educación.
+                            </p>
+
+                            <p>                                                
+                            </p>
+                        </div>
+                        <div id="right">
+                            <h2>Una breve descripcion:</h2>
+
+                            <p>
+                                Sistema de información orientado a la web que permitirá controlar la asistencia académico y actitudinal de los colegios.
+                            </p>
+                        </div>                                        
+                    </div>                                    
+                </div>                                
+            </div>                            
+        </div>                      
+
+
+    </ui:define>
+
+</ui:composition>
+
+

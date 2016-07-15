@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditClaseTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditClaseLabel_idClase}" for="idClase" />
+                    <h:inputText id="idClase" value="#{claseController.selected.idClase}" title="#{bundle.EditClaseTitle_idClase}" required="true" requiredMessage="#{bundle.EditClaseRequiredMessage_idClase}"/>
+                    <h:outputLabel value="#{bundle.EditClaseLabel_dia}" for="dia" />
+                    <h:inputText id="dia" value="#{claseController.selected.dia}" title="#{bundle.EditClaseTitle_dia}" required="true" requiredMessage="#{bundle.EditClaseRequiredMessage_dia}"/>
+                    <h:outputLabel value="#{bundle.EditClaseLabel_hora}" for="hora" />
+                    <h:inputText id="hora" value="#{claseController.selected.hora}" title="#{bundle.EditClaseTitle_hora}" required="true" requiredMessage="#{bundle.EditClaseRequiredMessage_hora}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditClaseLabel_asignaturaidAsignatura}" for="asignaturaidAsignatura" />
+                    <h:selectOneMenu id="asignaturaidAsignatura" value="#{claseController.selected.asignaturaidAsignatura}" title="#{bundle.EditClaseTitle_asignaturaidAsignatura}" required="true" requiredMessage="#{bundle.EditClaseRequiredMessage_asignaturaidAsignatura}">
+                        <f:selectItems value="#{asignaturaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditClaseLabel_profesoridProfesor}" for="profesoridProfesor" />
+                    <h:selectOneMenu id="profesoridProfesor" value="#{claseController.selected.profesoridProfesor}" title="#{bundle.EditClaseTitle_profesoridProfesor}" required="true" requiredMessage="#{bundle.EditClaseRequiredMessage_profesoridProfesor}">
+                        <f:selectItems value="#{profesorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditClaseLabel_cursoidCurso}" for="cursoidCurso" />
+                    <h:selectOneMenu id="cursoidCurso" value="#{claseController.selected.cursoidCurso}" title="#{bundle.EditClaseTitle_cursoidCurso}" required="true" requiredMessage="#{bundle.EditClaseRequiredMessage_cursoidCurso}">
+                        <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{claseController.update}" value="#{bundle.EditClaseSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditClaseViewLink}"/>
+                <br />
+                <h:commandLink action="#{claseController.prepareList}" value="#{bundle.EditClaseShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditClaseIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

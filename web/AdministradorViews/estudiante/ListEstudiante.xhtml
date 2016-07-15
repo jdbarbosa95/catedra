@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template.xhtml">
+    <ui:define name="title">
+        #{loginUsuarioController.usuario.nombreUsuario}- Consultar estudiante
+
+    </ui:define>
+
+    <ui:define name="banner">
+        <img src="../../resources/images/logo.png" width="303" height="82" alt="logo"/>
+
+        <div style="float: right" align="right">
+            #{loginUsuarioController.usuario.nombreUsuario}<br/> 
+            #{loginUsuarioController.usuario.rolidRol.nombreRol}<br/>  
+
+            <h:link outcome="/faces/index" value="Cerrar Sesion" />
+
+
+        </div>
+
+
+
+    </ui:define>
+    <ui:define name="nav">
+        <h:form>
+            <p:menubar>
+
+                <p:menuitem value="Perfil" outcome="/faces/AdministradorViews/PerfilAdministrador" icon="ui-icon-person"/>
+
+                <p:submenu label="Estudiantes" icon="ui-icon-document">
+
+                    <p:menuitem outcome="ListEstudiante" value="Consultar estudiante"/>
+                    <p:menuitem outcome="CreateEstudiante" value="crear estudiante"/>
+
+
+                </p:submenu>
+                <p:submenu label="Profesores" icon="ui-icon-document">
+
+                    <p:menuitem outcome="/faces/AdministradorViews/profesor/ListProfesor" value="Consultar profesor"/>
+                    <p:menuitem outcome="/faces/AdministradorViews/profesor/CreateProfesor" value="crear profesor"/>
+
+
+                </p:submenu>
+                <p:submenu label="Acudientes" icon="ui-icon-document">
+
+                    <p:menuitem outcome="/faces/AdministradorViews/acudiente/List" value="Consultar Acudiente"/>
+                    <p:menuitem outcome="/faces/AdministradorViews/acudiente/CreateAcudiente" value="crear Acudiente"/>
+
+
+                </p:submenu>
+
+            </p:menubar>            
+        </h:form>
+    </ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="wrapper">
+            <article class="grid_10">
+                <div class="maxheight Espacio1">
+                    <h3>consultar estudiante</h3>
+                </div>
+            </article>
+        </div>
+
+
+        
+        <h:form>
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+        <h:inputText pt:placeholder="Documento" value="#{estudianteController.documentoajax}">
+            <f:ajax render="tabla" listener="#{estudianteController.estPorDocumento}" event="change"/>
+        </h:inputText>
+   <br/>
+                <h:outputText escape="false" value="#{bundle.ListEstudianteEmpty}" rendered="#{estudianteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{estudianteController.items.rowCount > 0}">
+                    <h:outputText value="#{estudianteController.pagination.pageFirstItem + 1}..#{estudianteController.pagination.pageLastItem + 1}/#{estudianteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{estudianteController.previous}" value="#{bundle.Previous} #{estudianteController.pagination.pageSize}" rendered="#{estudianteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{estudianteController.next}" value="#{bundle.Next} #{estudianteController.pagination.pageSize}" rendered="#{estudianteController.pagination.hasNextPage}"/>&nbsp;
+                     <p:dataTable id="tabla" value="#{estudianteController.obtenerUsuario}" var="item"  style="border:solid 1px">
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Documento"/>
+                        </f:facet>
+                        <h:outputText value="#{item.usuarioidUsuario.documento}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombres"/>
+                        </f:facet>
+                        <h:outputText value="#{item.usuarioidUsuario.nombres}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Apellidos"/>
+                        </f:facet>
+                        <h:outputText value="#{item.usuarioidUsuario.apellidos}"/>
+                    </p:column>
+                         <p:column style="width: 250px">
+                        <f:facet name="header" >
+                            <h:outputText value="Correo"/>
+                        </f:facet>
+                        <h:outputText  value="#{item.usuarioidUsuario.correo}"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre de usuario"/>
+                        </f:facet>
+                        <h:outputText value="#{item.usuarioidUsuario.nombreUsuario}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Acudiente"/>
+                        </f:facet>
+                        <h:outputText value="#{item.acudienteidAcudiente.usuarioidUsuario.nombres}"/>&nbsp;
+                        <h:outputText value="#{item.acudienteidAcudiente.usuarioidUsuario.apellidos}"/>
+                    </p:column>
+                         <p:column style="width: 50px">
+                        <f:facet name="header">
+                            <h:outputText value="Curso"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cursoidCurso.nombre}"/>
+                    </p:column>
+
+                </p:dataTable>
+                </h:panelGroup>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+
+
+
+
+
+
+
+<!--
+ <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEstudianteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEstudianteEmpty}" rendered="#{estudianteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{estudianteController.items.rowCount > 0}">
+                    <h:outputText value="#{estudianteController.pagination.pageFirstItem + 1}..#{estudianteController.pagination.pageLastItem + 1}/#{estudianteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{estudianteController.previous}" value="#{bundle.Previous} #{estudianteController.pagination.pageSize}" rendered="#{estudianteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{estudianteController.next}" value="#{bundle.Next} #{estudianteController.pagination.pageSize}" rendered="#{estudianteController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{estudianteController.items}" var="item" c>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstudianteTitle_idEstudiante}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEstudiante}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstudianteTitle_acudienteidAcudiente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.acudienteidAcudiente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstudianteTitle_usuarioidUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioidUsuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstudianteTitle_cursoidCurso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cursoidCurso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{estudianteController.prepareView}" value="#{bundle.ListEstudianteViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{estudianteController.prepareEdit}" value="#{bundle.ListEstudianteEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{estudianteController.destroy}" value="#{bundle.ListEstudianteDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{estudianteController.prepareCreate}" value="#{bundle.ListEstudianteCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEstudianteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
+-->

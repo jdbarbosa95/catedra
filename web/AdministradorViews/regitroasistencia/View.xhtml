@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRegitroasistenciaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRegitroasistenciaLabel_idRegitroAsistencia}"/>
+                    <h:outputText value="#{regitroasistenciaController.selected.idRegitroAsistencia}" title="#{bundle.ViewRegitroasistenciaTitle_idRegitroAsistencia}"/>
+                    <h:outputText value="#{bundle.ViewRegitroasistenciaLabel_asistio}"/>
+                    <h:outputText value="#{regitroasistenciaController.selected.asistio}" title="#{bundle.ViewRegitroasistenciaTitle_asistio}"/>
+                    <h:outputText value="#{bundle.ViewRegitroasistenciaLabel_claseidClase}"/>
+                    <h:outputText value="#{regitroasistenciaController.selected.claseidClase}" title="#{bundle.ViewRegitroasistenciaTitle_claseidClase}"/>
+                    <h:outputText value="#{bundle.ViewRegitroasistenciaLabel_fecha}"/>
+                    <h:outputText value="#{regitroasistenciaController.selected.fecha}" title="#{bundle.ViewRegitroasistenciaTitle_fecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewRegitroasistenciaLabel_estudianteidEstudiante}"/>
+                    <h:outputText value="#{regitroasistenciaController.selected.estudianteidEstudiante}" title="#{bundle.ViewRegitroasistenciaTitle_estudianteidEstudiante}"/>
+                    <h:outputText value="#{bundle.ViewRegitroasistenciaLabel_justificacionidJustificacion}"/>
+                    <h:outputText value="#{regitroasistenciaController.selected.justificacionidJustificacion}" title="#{bundle.ViewRegitroasistenciaTitle_justificacionidJustificacion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{regitroasistenciaController.destroyAndView}" value="#{bundle.ViewRegitroasistenciaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRegitroasistenciaEditLink}"/>
+                <br />
+                <h:commandLink action="#{regitroasistenciaController.prepareCreate}" value="#{bundle.ViewRegitroasistenciaCreateLink}" />
+                <br />
+                <h:commandLink action="#{regitroasistenciaController.prepareList}" value="#{bundle.ViewRegitroasistenciaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRegitroasistenciaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

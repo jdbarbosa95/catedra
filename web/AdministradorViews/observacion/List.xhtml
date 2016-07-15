@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListObservacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListObservacionEmpty}" rendered="#{observacionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{observacionController.items.rowCount > 0}">
+                    <h:outputText value="#{observacionController.pagination.pageFirstItem + 1}..#{observacionController.pagination.pageLastItem + 1}/#{observacionController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{observacionController.previous}" value="#{bundle.Previous} #{observacionController.pagination.pageSize}" rendered="#{observacionController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{observacionController.next}" value="#{bundle.Next} #{observacionController.pagination.pageSize}" rendered="#{observacionController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{observacionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionTitle_idObservacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idObservacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionTitle_observacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionTitle_descargos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descargos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionTitle_fecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionTitle_observadoridObservador}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observadoridObservador}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionTitle_profesor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.profesor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{observacionController.prepareView}" value="#{bundle.ListObservacionViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{observacionController.prepareEdit}" value="#{bundle.ListObservacionEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{observacionController.destroy}" value="#{bundle.ListObservacionDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{observacionController.prepareCreate}" value="#{bundle.ListObservacionCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListObservacionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

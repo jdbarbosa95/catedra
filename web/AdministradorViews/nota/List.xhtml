@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListNotaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListNotaEmpty}" rendered="#{notaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{notaController.items.rowCount > 0}">
+                    <h:outputText value="#{notaController.pagination.pageFirstItem + 1}..#{notaController.pagination.pageLastItem + 1}/#{notaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{notaController.previous}" value="#{bundle.Previous} #{notaController.pagination.pageSize}" rendered="#{notaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{notaController.next}" value="#{bundle.Next} #{notaController.pagination.pageSize}" rendered="#{notaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{notaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotaTitle_idNota}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNota}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotaTitle_valoracion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valoracion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotaTitle_fechaRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaRegistro}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotaTitle_estudianteidEstudiante}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estudianteidEstudiante}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotaTitle_periodoidPeriodo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.periodoidPeriodo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotaTitle_asignaturaidAsignatura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.asignaturaidAsignatura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotaTitle_logroidLogro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.logroidLogro}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{notaController.prepareView}" value="#{bundle.ListNotaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{notaController.prepareEdit}" value="#{bundle.ListNotaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{notaController.destroy}" value="#{bundle.ListNotaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{notaController.prepareCreate}" value="#{bundle.ListNotaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListNotaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

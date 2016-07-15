@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template.xhtml">
+    <!-- nótese el uso del atributo 'template' -->
+
+    <ui:define name="title">
+        Catedra
+    </ui:define>
+
+    <ui:define name="nav">
+
+        <p:tabMenu activeIndex="#{param.i}">
+            <p:menuitem value="Inicio" outcome="/index" icon="ui-icon-star">
+                <f:param name="i" value="0" />
+            </p:menuitem>
+            <p:menuitem value="login" outcome="/login" icon="ui-icon-person">
+                <f:param name="i" value="1" />
+            </p:menuitem>
+            </p:tabMenu>
+    </ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="login">
+            <div class="login-screen">
+                <div class="app-title">
+                    <h3>Login</h3>
+                </div>
+                <h:form>
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+ 
+                    <div class="login-form">
+                        <div class="control-group">
+
+                            <h:inputText class="login-field" value="#{loginUsuarioController.nombreUsuario}"  pt:placeholder="usuario" id="login-name"/>
+                            <h:outputLabel class="login-field-icon fui-user " for="login-user"/>
+                        </div>
+                        <div class="control-group">
+                            <h:inputSecret class="login-field" value="#{loginUsuarioController.pass}" pt:placeholder="contraseña" id="login-pass"/>
+                            <label class="login-field-icon fui-lock" for="login-pass"></label>
+                        </div>
+                        <h:commandButton class="btn btn-primary btn-large btn-block"
+                                         value="Ingresar"   action="#{loginUsuarioController.usaurioEncontrado()}" />
+                        <a class="login-link" href="#">olvido su contraseña?</a>
+                    </div>
+                </h:form>
+
+            </div>
+        </div>                   
+
+    </ui:define>
+
+</ui:composition>
+
+
+
+
+
+
+

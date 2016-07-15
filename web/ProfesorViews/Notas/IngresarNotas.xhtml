@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:b="http://bootsfaces.net/ui"
+                template="/template.xhtml">
+    <!-- nótese el uso del atributo 'template' -->
+
+    <ui:define name="title">
+        #{loginUsuarioController.usuario.nombreUsuario}- ingresar notas
+
+    </ui:define>
+
+    <ui:define name="banner">
+        <img src="../../resources/images/logo.png" width="303" height="82" alt="logo"/>
+        <div style="float: right" align="right">
+            <p:outputLabel value="#{loginUsuarioController.usuario.nombreUsuario}"/><br/> 
+            <p:outputLabel value="#{loginUsuarioController.usuario.rolidRol.nombreRol}"/><br/> 
+            <h:link  outcome="/faces/index" value="Cerrar Sesion" />
+
+
+        </div>
+
+
+
+    </ui:define>
+    <ui:define name="nav">
+        <h:form>
+            <p:menubar>
+
+                <p:menuitem value="Perfil" outcome="/faces/ProfesorViews/PerfilProfesor" icon="ui-icon-person"/>
+
+                <p:submenu label="Notas" icon="ui-icon-document">
+
+                    <p:menuitem outcome="VerNotas" value="Ver Notas"/>
+
+                    <p:menuitem outcome="IngresarNotas" value="Ingresar Notas"/>
+
+
+                </p:submenu>
+                <p:submenu label="Observador" icon="ui-icon-document">
+
+                    <p:menuitem outcome="/faces/ProfesorViews/Observador/CrearObservacion" value="Crear Observacion"/>
+
+                </p:submenu>
+                <p:submenu label="Asistencia" icon="ui-icon-document">
+
+                    <p:menuitem value="consultar asistencia"/>
+                    <p:menuitem outcome="/faces/ProfesorViews/Asistencia/RegistrarAsistencia" value="Registrar asistencia"/>
+
+                </p:submenu>
+            </p:menubar>            
+        </h:form>
+    </ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="wrapper">
+            <article class="grid_10">
+                <div class="maxheight Espacio1">
+                    <h3>ingresar notas</h3>
+                </div>
+            </article>
+        </div>
+
+
+        <h:form>
+             <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+            <h:outputLabel value="Periodo Escolar:&nbsp;" style="color: #000000" for="slcPeriodo" />
+            <h:selectOneMenu  id="slcPeriodo" value="#{usuarioController.periodoSelecionado}" >
+                <f:selectItems value="#{periodoController.itemsAvailableSelectOne}"  />
+            </h:selectOneMenu> 
+            &nbsp;
+            <h:outputLabel value="Curso:&nbsp;" style="color: #000000" for="cursos" />            
+            <h:selectOneMenu id="cursos" value="#{usuarioController.cursoSelecUsuario}" >
+                <f:selectItems value="#{cursoController.itemsAvailableSelectOneMisCursos}"  />
+                <f:ajax id="idCur" event="change" render="result" listener="#{asignaturaController.obtenerIdCursoProfesor()}"/>
+            </h:selectOneMenu>         
+
+
+            &nbsp;
+            <h:outputLabel value="Asignatura:&nbsp;" style="color:#000000" for="result" />
+            <h:selectOneMenu id="result" value="#{asignaturaController.asignaturaSelecDocente}" >
+                <f:selectItems value="#{asignaturaController.lista}"/>
+                <f:ajax id="idEst" event="change" render="resultEst"  listener="#{estudianteController.obtenerEstudiantes()}"/>
+                <f:ajax render="resulMateria" listener="#{logroController.buscarLogros()}" event="change"/>  
+            </h:selectOneMenu>
+            &nbsp;
+            <h:outputLabel value="Logro:  &nbsp;" style="color: #000000" for="resulMateria" />
+            <h:selectOneMenu id="resulMateria" value="#{logroController.logroSel}" >
+                <f:selectItems value="#{logroController.lista}"/>
+            </h:selectOneMenu>
+            &nbsp;
+            
+            <br/>
+
+            <h:dataTable  var="item" id="resultEst" value="#{estudianteController.listaEstNota}" border="1" >
+                <h:column >
+                    <f:facet name="header">Nombre</f:facet> 
+                    <h:outputLabel value="#{item.estudiante.usuarioidUsuario.nombres}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header">Apellidos</f:facet> 
+                    <h:outputLabel value="#{item.estudiante.usuarioidUsuario.apellidos}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header">Curso</f:facet> 
+                    <h:outputLabel value="#{item.estudiante.cursoidCurso.nombre}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header">Valor</f:facet> 
+                    <h:inputText value="#{item.nota.valoracion}" />
+                </h:column>
+            </h:dataTable>
+            <br/>
+            <h:commandButton value="Ingresar Notas Estudiantes" action="#{notaController.crearNotasEstudiante()}"/>
+            <br/>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

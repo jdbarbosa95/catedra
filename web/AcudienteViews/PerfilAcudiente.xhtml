@@ -1,0 +1,110 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template.xhtml">
+    <!-- nótese el uso del atributo 'template' -->
+
+    <ui:define name="title">
+        <title>Acudiente</title>
+    </ui:define>
+
+           
+         <div id="header">
+                <ul class="nav">
+                    <li>
+                        <h:commandLink action="/index">Cerrar sesion</h:commandLink>
+                    </li>
+                </ul>
+            </div>
+   
+    <ui:define name="nav">
+        <h:form>
+            <p:menubar>
+
+                <p:menuitem value="Perfil" outcome="PerfilAcudiente" icon="ui-icon-person"/>
+
+
+                <p:menuitem outcome="Notas" value="Notas" />
+                
+
+            </p:menubar>            
+        </h:form>
+    </ui:define>
+    
+
+    <ui:define name="contenido">
+        <h:form>
+            <table border="3">
+                <tr>
+                    <td> <img src="resources/images/hombre-usuario-icono-de-clip-art_419253.jpg" alt="logo" />
+                        <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:" />
+                    </td>
+                    <td><span class="date">
+                            <h:outputLabel value="#{loginController.usu.nombres}"/> <h:outputLabel value="#{loginController.usu.apellidos}"/>
+                            D.I:<h:outputLabel value="#{loginController.usu.documento}"/>
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            </table>
+        </h:form>
+        <h2>
+            Informacion Personal
+        </h2>
+        <h:form>
+            <table border="2">
+                <tr>
+
+                    <td> Nombre : </td>
+                    <td>  <h:outputLabel value="#{loginController.usu.nombres}"/>  <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+                </tr>
+
+                <tr>
+
+                    <td> Apellido : </td>
+                    <td> <h:outputLabel value="#{loginController.usu.apellidos}"/>   <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+                </tr>
+                <tr>
+                    <td> Documento de identidad : </td>
+                    <td> <h:outputLabel value="#{loginController.usu.documento}"/>  <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+                </tr>
+                <tr>
+
+                    <td> Correo electronico : </td>
+                    <td> <h:outputLabel value="#{loginController.usu.correo}"/>  <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+                </tr>
+
+                <tr>
+
+                    <td> Telefono : </td>
+                    <td> <h:outputLabel value="#{loginController.usu.correo}"/>  <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+
+
+                </tr>
+
+            </table>
+
+        </h:form>
+
+
+
+
+    </ui:define>
+
+</ui:composition>
+
+
+
+
+
+

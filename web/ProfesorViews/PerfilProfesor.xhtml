@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template.xhtml">
+    <!-- nótese el uso del atributo 'template' -->
+
+    <ui:define name="title">
+        #{loginUsuarioController.usuario.nombreUsuario}-Perfil
+    </ui:define>
+
+    <ui:define name="banner">
+        <div>
+
+
+            <img src="../resources/images/logo.png" width="303" height="82" alt="logo" align="left"/>
+
+
+            <div style="float: right" align="right">
+               <p:outputLabel value="#{loginUsuarioController.usuario.nombreUsuario}"/><br/> 
+            <p:outputLabel value="#{loginUsuarioController.usuario.rolidRol.nombreRol}"/><br/> 
+                     
+                <h:link outcome="/faces/index" value="Cerrar Sesion" />
+
+
+            </div>
+
+
+        </div>
+    </ui:define>
+
+    <ui:define name="nav">
+        <h:form>
+            <p:menubar>
+
+                <p:menuitem value="Perfil" url="PerfilProfesor.xhtml" icon="ui-icon-person"/>
+
+                <p:submenu label="Notas" icon="ui-icon-document">
+
+                    <p:menuitem outcome="Notas/VerNotas" value="Ver Notas"/>
+
+                    <p:menuitem outcome="Notas/IngresarNotas" value="Ingresar Notas"/>
+
+                </p:submenu>
+                <p:submenu label="Observador" icon="ui-icon-document">
+                    
+                    <p:menuitem outcome="Observador/CrearObservacion" value="Hacer Observacion"/>
+                    
+                </p:submenu> 
+                <p:submenu label="Asistencia" icon="ui-icon-document">
+                    
+                    <p:menuitem value="consultar asistencia" outcome="Asistencia/VerAsistencia"/>
+                    <p:menuitem outcome="Asistencia/RegistrarAsistencia" value="Registrar asistencia"/>
+                    
+                </p:submenu> 
+
+
+
+
+            </p:menubar>
+
+        </h:form>
+    </ui:define>
+
+    <ui:define name="contenido">
+                               
+                <div class="wrapper">
+                    <article class="grid_10">
+                        <div class="maxheight Espacio1">
+                            <h3>Configuracion de perfil</h3>
+
+                        </div>
+                    </article>                
+            </div>
+        
+
+        <h:form>
+            <table border="3">
+                <tr>
+                    <td> <img src="../resources/images/hombre-usuario-icono-de-clip-art_419253.jpg" alt="logo" />
+
+                    </td>
+                    <td><span class="date">
+                            <h:outputLabel value="#{loginUsuarioController.usuario.nombres}"/> &nbsp;<h:outputLabel value="#{loginUsuarioController.usuario.apellidos}"/>
+
+
+                            <br/> D.I:<h:outputLabel value="#{loginUsuarioController.usuario.documento}"/>
+                            <img height="30" width="30" src="../resources/images/confi.jpg" alt="logo" style="float: right" />
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            </table>
+        </h:form>
+        <h2>
+            Informacion Personal
+        </h2>
+        <h:form>
+            <table border="2">
+                <tr>
+
+                    <td> Nombre : </td>
+                    <td>  <h:outputLabel value="#{loginUsuarioController.usuario.nombres}"/>  <img height="30" width="30" src="../resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+                </tr>
+
+                <tr>
+
+                    <td> Apellido : </td>
+                    <td> <h:outputLabel value="#{loginUsuarioController.usuario.apellidos}"/>   <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+                </tr>
+                <tr>
+                    <td> Documento de identidad : </td>
+                    <td> <h:outputLabel value="#{loginUsuarioController.usuario.documento}"/>  <img height="30" width="30" src="../resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+                </tr>
+                <tr>
+
+                    <td> Correo electronico : </td>
+                    <td> <h:outputLabel value="#{loginUsuarioController.usuario.correo}"/>  <img height="30" width="30" src="../resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+                </tr>
+
+                <tr>
+
+                    <td> Telefono : </td>
+                    <td> <h:outputLabel value="#{loginUsuarioController.usuario.telefono}"/>  <img height="30" width="30" src="../resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+
+
+                </tr>
+
+            </table>
+
+        </h:form>
+
+
+
+    </ui:define>
+
+</ui:composition>
+
+
+
+
+
+<!--<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+   
+    <h:head>
+        <h:outputScript library="js" name="jquery-2.1.4.js"/>
+        <h:outputScript library="js" name="jquery.js"/>
+        
+        <h:outputStylesheet library="css" name="style.css"/>
+        
+        
+        <title>Catedra</title>
+             
+        
+        
+    </h:head>
+    <h:body>
+       <div id="page">
+
+    <header>
+
+        <img src="../resources/images/logo.png " width="303" height="82" alt="logo" /> 
+  
+      <br />
+     <h:graphicImage url="/public/images/bg_banner_grey.gif" width="980" height="5" alt="logo_banner" />
+
+      </header>
+                
+        
+ <div id="header">
+<ul class="nav">
+            
+            
+            
+ <li><a href="Inicio.html">logout</a></li>
+                </ul>
+</div>
+
+    <div class="ContenidoCentro">
+    <div id="content">
+    <div>
+    <div class="wrapper Espacio1">
+    <div class="grid_12">
+    <div class="wrapper LineaCompleta">
+  
+    
+    
+    
+    
+    
+     <nav>
+    <ul class="menu">
+        <li>
+            
+            <a class="active" href="Perfil.xhtml">Perfil</a>
+        </li>
+         <li>
+             
+             <a  href="../viewsadmin/regitroasistencia/List.xhtml">registro asistencia</a>
+         </li>
+         <li>
+             <a href="../viewsadmin/nota/List.xhtml">notas</a>
+         </li> 
+        
+
+    
+         </ul>
+         </nav>
+         </div>
+        </div>
+        </div>
+        </div>
+         </div>
+         </div>
+         
+         
+         
+       <div id="content">
+         <div class="ic"></div>
+         <div>
+          <div class="wrapper">
+          <article class="grid_10">
+          <div class="maxheight Espacio1">
+          <h3>Configuracion de perfil</h3>
+        
+      </div>
+         </article>
+              </div>
+             </div>
+             </div>
+  
+    <h:form>
+  <table border="3">
+  <tr>
+      <td> <img src="resources/images/hombre-usuario-icono-de-clip-art_419253.jpg" alt="logo" />
+          <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:" />
+</td>
+<td><span class="date">
+        <h:outputLabel value="#{loginController.encontrado.nombres}"/> <h:outputLabel value="#{loginController.encontrado.apellidos}"/>
+        D.I:<h:outputLabel value="#{loginController.encontrado.documento}"/>
+
+</span>
+
+</td>
+
+</tr>
+
+</table>
+</h:form>
+<h2>
+Informacion Personal
+</h2>
+    <h:form>
+ <table border="2">
+  <tr>
+  
+<td> Nombre : </td>
+<td>  <h:outputLabel value="#{loginController.encontrado.nombres}"/>  <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+</tr>
+
+<tr>
+  
+<td> Apellido : </td>
+<td> <h:outputLabel value="#{loginController.encontrado.apellidos}"/>   <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+</tr>
+ <tr>
+<td> Documento de identidad : </td>
+<td> <h:outputLabel value="#{loginController.encontrado.documento}"/>  <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+         </tr>
+<tr>
+  
+<td> Correo electronico : </td>
+<td> <h:outputLabel value="#{loginController.encontrado.correo}"/>  <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+</tr>
+
+<tr>
+  
+<td> Telefono : </td>
+<td> <h:outputLabel value="#{loginController.encontrado.correo}"/>  <img height="30" width="30" src="resources/images/confi.jpg" alt="logo"  style="float:right" /></td>
+
+
+
+</tr>
+
+</table>
+
+</h:form>
+
+                     
+                      
+    
+
+<div id="footer">
+                <p>Copyright (c) 2008 Sitename.com. Todos los derechos reservados. DIseñado por <a href="">Catedra</a>.</p>
+        </div>
+        
+<div style="text-align: center; font-size: 0.75em;">Diseño de pagina realizado por  <a href="">Catedra</a>.</div></div>
+    </h:body>
+</html>
+-->

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateJustificacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateJustificacionLabel_idJustificacion}" for="idJustificacion" />
+                    <h:inputText id="idJustificacion" value="#{justificacionController.selected.idJustificacion}" title="#{bundle.CreateJustificacionTitle_idJustificacion}" required="true" requiredMessage="#{bundle.CreateJustificacionRequiredMessage_idJustificacion}"/>
+                    <h:outputLabel value="#{bundle.CreateJustificacionLabel_descargo}" for="descargo" />
+                    <h:inputTextarea rows="4" cols="30" id="descargo" value="#{justificacionController.selected.descargo}" title="#{bundle.CreateJustificacionTitle_descargo}" required="true" requiredMessage="#{bundle.CreateJustificacionRequiredMessage_descargo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{justificacionController.create}" value="#{bundle.CreateJustificacionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{justificacionController.prepareList}" value="#{bundle.CreateJustificacionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateJustificacionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

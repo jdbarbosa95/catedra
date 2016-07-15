@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title><ui:insert name="title">Catedra</ui:insert></title>
+                <h:outputStylesheet library="css" name="style.css"/>
+                <h:outputScript library="js" name="jquery.js"/>
+                <h:outputScript library="js" name="jquery-2.1.4.js"/>
+            </f:facet>
+        </h:head>
+        
+
+        <h:body>
+
+            <p:layout  id="page">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <img src="resources/images/logo.png" width="303" height="82" alt="logo"/>
+                    <br/>  
+                </p:layoutUnit>
+
+                <p:tabMenu activeIndex="#{param.i}">
+                    <p:menuitem value="Overview" outcome="/index" icon="ui-icon-star">
+                        <f:param name="i" value="0" />
+                    </p:menuitem>
+                    <p:menuitem value="Demos" outcome="/login" icon="ui-icon-search">
+                        <f:param name="i" value="1" />
+                    </p:menuitem>
+                    
+                </p:tabMenu>
+
+               
+                    <div id="footer">
+                        <p>Copyright (c) 2008 Sitename.com. Todos los derechos reservados. DIseñado por Catedra</p>
+                    </div> 
+                    <div style="text-align: center; font-size: 0.75em;">Diseño de pagina realizado por <a href="">Catedra</a></div>
+
+                
+
+
+
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
